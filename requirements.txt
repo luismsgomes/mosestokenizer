@@ -1,0 +1,2 @@
+docopt>=0.6.2
+hg+ssh://hg@bitbucket.org/luismsgomes/toolwrapper@v0.1.0#egg=toolwrapper
