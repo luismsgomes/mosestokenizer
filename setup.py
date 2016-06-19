@@ -18,8 +18,8 @@ def get_version(*relpath):
 
 setup(
     name='mosestokenizer',
-    version=get_version('mosestokenizer', 'mosestokenizer.py'),
-    description='A wrapper for Philipp Koehn\'s tokenizer',
+    version=get_version('mosestokenizer', '__init__.py'),
+    description='Wrappers for several pre-processing scripts from the Moses toolkit.',
     long_description=read('README.rst'),
     url='https://bitbucket.org/luismsgomes/mosestokenizer',
     author='Luís Gomes',
@@ -43,9 +43,19 @@ setup(
         'mosestokenizer': 'mosestokenizer'
     },
     package_data={
-        'mosestokenizer': ['tokenizer.perl', 'nonbreaking_prefixes/*.*'],
+        'mosestokenizer': [
+            'tokenizer-v1.0.perl',
+            'tokenizer-v1.1.perl',
+            'split-sentences.perl',
+            'normalize-punctuation.perl',
+            'nonbreaking_prefixes/*.*'
+        ],
     },
     entry_points={
-        'console_scripts': ['mosestokenizer=mosestokenizer.mosestokenizer:main'],
+        'console_scripts': [
+            'moses-tokenizer=mosestokenizer.tokenizer:main',
+            'moses-punct-normalizer=mosestokenizer.punctnormalizer:main',
+            'moses-sent-splitter=mosestokenizer.sentsplitter:main'
+        ],
     },
 )
