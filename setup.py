@@ -2,19 +2,36 @@ from setuptools import setup, find_packages
 from os import path
 import re
 
+def packagefile(*relpath):
+    return path.join(path.dirname(__file__), *relpath)
+
 def read(*relpath):
-    with open(path.join(path.dirname(__file__), *relpath)) as fp:
-        return fp.read()
+    with open(packagefile(*relpath)) as f:
+        return f.read()
 
 def get_version(*relpath):
     match = re.search(
-        r'''^__version__ = ['"]([^""]*)['"]''',
+        r'''^__version__ = ['"]([^'"]*)['"]''',
         read(*relpath),
         re.M
     )
     if not match:
         raise RuntimeError('Unable to find version string.')
     return match.group(1)
+
+def get_requirements():
+    with open(packagefile("requirements.txt")) as lines:
+        requires = []
+        for line in map(str.strip, lines):
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("-e "):
+                _, _, egg = line.rpartition("#egg=")
+                if egg:
+                    requires.append(egg)
+            else:
+                requires.append(line)
+        return requires
 
 setup(
     name='mosestokenizer',
@@ -34,10 +51,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     keywords='text tokenization pre-processing',
-    install_requires=[
-        'docopt',
-        'toolwrapper',
-    ],
+    install_requires=get_requirements(),
     packages=['mosestokenizer'],
     package_dir={
         'mosestokenizer': 'mosestokenizer'
