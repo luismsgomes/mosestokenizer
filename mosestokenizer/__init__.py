@@ -17,7 +17,7 @@ from .tokenizer import MosesTokenizer
 from .sentsplitter import MosesSentenceSplitter
 from .punctnormalizer import MosesPunctuationNormalizer
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 """Semantic versioning (major.minor.patch)
 
