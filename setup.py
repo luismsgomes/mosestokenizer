@@ -19,20 +19,6 @@ def get_version(*relpath):
         raise RuntimeError('Unable to find version string.')
     return match.group(1)
 
-def get_requirements():
-    with open(packagefile("requirements.txt")) as lines:
-        requires = []
-        for line in map(str.strip, lines):
-            if not line or line.startswith("#"):
-                continue
-            if line.startswith("-e "):
-                _, _, egg = line.rpartition("#egg=")
-                if egg:
-                    requires.append(egg)
-            else:
-                requires.append(line)
-        return requires
-
 setup(
     name='mosestokenizer',
     version=get_version('mosestokenizer', '__init__.py'),
@@ -51,7 +37,10 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     keywords='text tokenization pre-processing',
-    install_requires=get_requirements(),
+    install_requires=[
+        "docopt",
+        "toolwrapper",
+    ],
     packages=['mosestokenizer'],
     package_dir={
         'mosestokenizer': 'mosestokenizer'
