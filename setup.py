@@ -21,7 +21,7 @@ def get_version(*relpath):
 
 setup(
     name='mosestokenizer',
-    version=get_version('mosestokenizer', '__init__.py'),
+    version=get_version('src', 'mosestokenizer', '__init__.py'),
     description='Wrappers for several pre-processing scripts from the Moses toolkit.',
     long_description=read('README.rst'),
     url='https://bitbucket.org/luismsgomes/mosestokenizer',
@@ -41,16 +41,11 @@ setup(
         "docopt",
         "toolwrapper",
     ],
-    packages=['mosestokenizer'],
-    package_dir={
-        'mosestokenizer': 'mosestokenizer'
-    },
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     package_data={
         'mosestokenizer': [
-            'tokenizer-v1.0.perl',
-            'tokenizer-v1.1.perl',
-            'split-sentences.perl',
-            'normalize-punctuation.perl',
+            '*.perl',
             'nonbreaking_prefixes/*.*'
         ],
     },

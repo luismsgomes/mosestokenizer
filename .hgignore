@@ -3,4 +3,3 @@ syntax: glob
 __pycache__
 *.pyc
 dist
-src
