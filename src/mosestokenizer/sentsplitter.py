@@ -111,7 +111,7 @@ def main():
             sys.exit(0)
     split_sents = MosesSentenceSplitter(args["<lang>"])
     inputfile = open(args["<inputfile>"]) if args["<inputfile>"] else sys.stdin
-    outputfile = open(args["<outputfile>"]) if args["<outputfile>"] else sys.stdout
+    outputfile = open(args["<outputfile>"], "wt") if args["<outputfile>"] else sys.stdout
     with inputfile, outputfile:
         paragraphs = read_paragraphs(inputfile, wrapped=args["--unwrap"])
         paragraphs = map(split_sents, paragraphs)

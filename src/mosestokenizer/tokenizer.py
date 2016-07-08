@@ -75,7 +75,7 @@ def main():
             sys.exit(0)
     tokenize = MosesTokenizer(args["<lang>"], old_version=args["--old"])
     inputfile = open(args["<inputfile>"]) if args["<inputfile>"] else sys.stdin
-    outputfile = open(args["<outputfile>"]) if args["<outputfile>"] else sys.stdout
+    outputfile = open(args["<outputfile>"], "wt") if args["<outputfile>"] else sys.stdout
     with inputfile, outputfile:
         for line in inputfile:
             print(*tokenize(line), file=outputfile)
