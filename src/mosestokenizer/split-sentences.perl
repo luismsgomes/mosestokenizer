@@ -19,12 +19,14 @@ my %NONBREAKING_PREFIX = ();
 my $language = "en";
 my $QUIET = 0;
 my $HELP = 0;
+my $MORE = 0;
 
 while (@ARGV) {
 	$_ = shift;
 	/^-l$/ && ($language = shift, next);
 	/^-q$/ && ($QUIET = 1, next);
 	/^-h$/ && ($HELP = 1, next);
+	/^-m$/ && ($MORE = 1, next);
 	/^-b$/ && ($|++, next); # no output buffering
 }
 
@@ -102,6 +104,11 @@ sub preprocess {
 	$text =~ s/ $//g;
 
 	#####add sentence breaks as needed#####
+
+	if ($MORE) {
+		#colon and semi-colon may be considered sentence breakers
+		$text =~ s/([\:;])/$1\n/g;
+	}
 
 	#non-period end of sentence markers (?!) followed by sentence starters.
 	$text =~ s/([?!]) +([\'\"\(\[\¿\¡\p{IsPi}]*[\p{IsUpper}])/$1\n$2/g;

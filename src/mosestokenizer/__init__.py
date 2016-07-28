@@ -13,8 +13,14 @@ This package provides wrappers for the following Perl scripts:
 
 """
 
-from .tokenizer import MosesTokenizer
-from .sentsplitter import MosesSentenceSplitter
-from .punctnormalizer import MosesPunctuationNormalizer
+from mosestokenizer.tokenizer import MosesTokenizer
+from mosestokenizer.sentsplitter import MosesSentenceSplitter
+from mosestokenizer.punctnormalizer import MosesPunctuationNormalizer
 
-__version__ = "0.2.4"
+__version__ = "0.2.5"
+
+__all__ = [
+    "MosesTokenizer",
+    "MosesSentenceSplitter",
+    "MosesPunctuationNormalizer",
+]

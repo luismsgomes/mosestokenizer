@@ -1,4 +1,6 @@
-"""A module for interfacing with ``split-sentences.perl`` from Moses toolkit."""
+"""
+A module for interfacing with ``split-sentences.perl`` from Moses toolkit.
+"""
 
 usage = """
 Usage:
@@ -15,19 +17,22 @@ Options:
                     When this option is not given, each line is assumed to be
                     an independent paragraph or sentence and thus will not be
                     joined with other lines.
+    --more          Also split on colons and semi-colons.
 
 2016, Luís Gomes <luismsgomes@gmail.com>
 """
 
 
 from docopt import docopt
+from openfile import openfile
 from os import path
 from toolwrapper import ToolWrapper
 import sys
 
 
 class MosesSentenceSplitter(ToolWrapper):
-    """A class for interfacing with ``split-sentences.perl`` from Moses toolkit.
+    """
+    A class for interfacing with ``split-sentences.perl`` from Moses toolkit.
 
     This class communicates with split-sentences.perl process via pipes. When
     the MosesSentenceSplitter object is no longer needed, the close() method
@@ -35,19 +40,24 @@ class MosesSentenceSplitter(ToolWrapper):
     manager interface. If used in a with statement, the close() method is
     invoked automatically.
 
+    When attribute ``more`` is True, colons and semi-colons are considered
+    sentence separators.
+
     >>> split_sents = MosesSentenceSplitter('en')
     >>> split_sents(['Hello World! Hello', 'again.'])
     ['Hello World!', 'Hello again.']
 
     """
 
-    def __init__(self, lang="en"):
+    def __init__(self, lang="en", more=True):
         self.lang = lang
         program = path.join(
             path.dirname(__file__),
             "split-sentences.perl"
         )
         argv = ["perl", program, "-q", "-b", "-l", self.lang]
+        if more:
+            argv.append("-m")
         super().__init__(argv)
 
     def __str__(self):
@@ -59,7 +69,7 @@ class MosesSentenceSplitter(ToolWrapper):
          allowed.
         """
         assert isinstance(paragraph, (list, tuple))
-        if not paragraph: # empty paragraph is OK
+        if not paragraph:  # empty paragraph is OK
             return []
         assert all(isinstance(line, str) for line in paragraph)
         paragraph = [line.strip() for line in paragraph]
@@ -98,7 +108,7 @@ def write_paragraphs(paragraphs, outputfile, blank_sep=True):
         for sentence in paragraph:
             print(sentence, file=outputfile)
         if blank_sep or not paragraph:
-            print(file=outputfile) # paragraph separator
+            print(file=outputfile)  # paragraph separator
 
 
 def main():
@@ -109,9 +119,9 @@ def main():
         doctest.testmod(mosestokenizer.sentsplitter)
         if not args["<lang>"]:
             sys.exit(0)
-    split_sents = MosesSentenceSplitter(args["<lang>"])
-    inputfile = open(args["<inputfile>"]) if args["<inputfile>"] else sys.stdin
-    outputfile = open(args["<outputfile>"], "wt") if args["<outputfile>"] else sys.stdout
+    split_sents = MosesSentenceSplitter(args["<lang>"], more=args["--more"])
+    inputfile = openfile(args["<inputfile>"])
+    outputfile = openfile(args["<outputfile>"], "wt")
     with inputfile, outputfile:
         paragraphs = read_paragraphs(inputfile, wrapped=args["--unwrap"])
         paragraphs = map(split_sents, paragraphs)

@@ -8,14 +8,16 @@ Usage:
 Options:
     --selftest, -t  Run selftests.
     --verbose, -v   Be more verbose.
-    --old           Use older version (1.0) of the tokenizer.  If this option
-                    is not given, then version 1.1 will be used.
+    --old           Use older version (1.0) of the tokenizer.
+                    If this option is not given, then version 1.1
+                    will be used.
 
 2016, Luís Gomes <luismsgomes@gmail.com>
 """
 
 
 from docopt import docopt
+from openfile import openfile
 from os import path
 from toolwrapper import ToolWrapper
 import sys
@@ -73,9 +75,12 @@ def main():
         doctest.testmod(mosestokenizer.tokenizer)
         if not args["<lang>"]:
             sys.exit(0)
-    tokenize = MosesTokenizer(args["<lang>"], old_version=args["--old"])
-    inputfile = open(args["<inputfile>"]) if args["<inputfile>"] else sys.stdin
-    outputfile = open(args["<outputfile>"], "wt") if args["<outputfile>"] else sys.stdout
+    tokenize = MosesTokenizer(
+        args["<lang>"],
+        old_version=args["--old"],
+    )
+    inputfile = openfile(args["<inputfile>"])
+    outputfile = openfile(args["<outputfile>"], "wt")
     with inputfile, outputfile:
         for line in inputfile:
             print(*tokenize(line), file=outputfile)

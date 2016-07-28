@@ -2,12 +2,15 @@ from setuptools import setup, find_packages
 from os import path
 import re
 
+
 def packagefile(*relpath):
     return path.join(path.dirname(__file__), *relpath)
+
 
 def read(*relpath):
     with open(packagefile(*relpath)) as f:
         return f.read()
+
 
 def get_version(*relpath):
     match = re.search(
@@ -19,10 +22,12 @@ def get_version(*relpath):
         raise RuntimeError('Unable to find version string.')
     return match.group(1)
 
+
 setup(
     name='mosestokenizer',
     version=get_version('src', 'mosestokenizer', '__init__.py'),
-    description='Wrappers for several pre-processing scripts from the Moses toolkit.',
+    description='Wrappers for several pre-processing scripts from the Moses'
+                ' toolkit.',
     long_description=read('README.rst'),
     url='https://bitbucket.org/luismsgomes/mosestokenizer',
     author='Luís Gomes',
@@ -39,6 +44,7 @@ setup(
     keywords='text tokenization pre-processing',
     install_requires=[
         "docopt",
+        "openfile",
         "toolwrapper",
     ],
     packages=find_packages('src'),
