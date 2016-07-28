@@ -1,5 +1,6 @@
 syntax: glob
-*.egg-info
-__pycache__
+*.egg-info/
+__pycache__/
 *.pyc
-dist
+dist/
+build/
