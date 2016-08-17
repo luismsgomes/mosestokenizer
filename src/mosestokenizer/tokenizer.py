@@ -1,4 +1,8 @@
-"""A module for interfacing with ``tokenizer.perl`` from Moses."""
+"""
+A module for interfacing with ``tokenizer.perl`` from Moses.
+
+Copyright ® 2016, Luís Gomes <luismsgomes@gmail.com>
+"""
 
 usage = """
 Usage:

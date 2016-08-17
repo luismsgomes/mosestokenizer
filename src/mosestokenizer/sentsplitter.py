@@ -1,5 +1,7 @@
 """
 A module for interfacing with ``split-sentences.perl`` from Moses toolkit.
+
+Copyright ® 2016, Luís Gomes <luismsgomes@gmail.com>
 """
 
 usage = """

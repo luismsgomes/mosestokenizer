@@ -32,13 +32,13 @@ setup(
     url='https://bitbucket.org/luismsgomes/mosestokenizer',
     author='Luís Gomes',
     author_email='luismsgomes@gmail.com',
-    license='Other/Proprietary License',
+    license='LGPLv2',
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Text Processing :: Linguistic',
-        'License :: Other/Proprietary License',
+        'License :: OSI Approved :: GNU Lesser General Public License v2',
         'Programming Language :: Python :: 3.5',
     ],
     keywords='text tokenization pre-processing',

@@ -1,4 +1,7 @@
-"""Wrappers for several pre-processing scripts from the Moses toolkit.
+"""
+Wrappers for several pre-processing scripts from the Moses toolkit.
+
+Copyright ® 2016, Luís Gomes <luismsgomes@gmail.com>
 
 This package provides wrappers for the following Perl scripts:
 
@@ -17,7 +20,7 @@ from mosestokenizer.tokenizer import MosesTokenizer
 from mosestokenizer.sentsplitter import MosesSentenceSplitter
 from mosestokenizer.punctnormalizer import MosesPunctuationNormalizer
 
-__version__ = "0.2.5"
+__version__ = "0.3.0"
 
 __all__ = [
     "MosesTokenizer",
