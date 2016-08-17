@@ -38,7 +38,8 @@ setup(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Topic :: Text Processing :: Linguistic',
-        'License :: OSI Approved :: GNU Lesser General Public License v2',
+        'License :: OSI Approved :: GNU Lesser General Public License v2'
+            ' or later (LGPLv2+)',
         'Programming Language :: Python :: 3.5',
     ],
     keywords='text tokenization pre-processing',
