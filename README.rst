@@ -21,7 +21,7 @@ background process.  When the objects are no longer needed, you should call the
 ``.close()`` method to close the background process and free system resources.
 
 The objects also support the context manager interface.
-Thus if used within a ``with`` block, the ``.close()`` method is invoked
+Thus, if used within a ``with`` block, the ``.close()`` method is invoked
 automatically when the block exits.
 
 The following two usages of ``MosesTokenizer`` are equivalent:
@@ -59,7 +59,7 @@ returns a list of sentences (strings):
     ...         'leave a message?'
     ...     ])
     ...
-    ['Mr. Smith is away.', 'Want to leave a message?']
+    ['Mr. Smith is away.', 'Do you want to leave a message?']
 
 
 ``MosesPunctuationNormalizer`` objects take a string as argument and return a
@@ -89,4 +89,4 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-02110-1301  USA
+02110-1301 USA
