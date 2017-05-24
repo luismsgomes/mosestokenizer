@@ -59,6 +59,7 @@ setup(
     entry_points={
         'console_scripts': [
             'moses-tokenizer=mosestokenizer.tokenizer:main',
+            'moses-detokenizer=mosestokenizer.detokenizer:main',
             'moses-punct-normalizer=mosestokenizer.punctnormalizer:main',
             'moses-sent-splitter=mosestokenizer.sentsplitter:main'
         ],
