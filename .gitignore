@@ -1,4 +1,3 @@
-syntax: glob
 *.egg-info/
 __pycache__/
 *.pyc
