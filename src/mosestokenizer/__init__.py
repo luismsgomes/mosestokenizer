@@ -21,7 +21,7 @@ from mosestokenizer.detokenizer import MosesDetokenizer
 from mosestokenizer.sentsplitter import MosesSentenceSplitter
 from mosestokenizer.punctnormalizer import MosesPunctuationNormalizer
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     "MosesTokenizer",

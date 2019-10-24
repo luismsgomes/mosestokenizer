@@ -29,7 +29,7 @@ setup(
     description='Wrappers for several pre-processing scripts from the Moses'
                 ' toolkit.',
     long_description=read('README.rst'),
-    url='https://bitbucket.org/luismsgomes/mosestokenizer',
+    url='https://github.com/luismsgomes/mosestokenizer',
     author='Luís Gomes',
     author_email='luismsgomes@gmail.com',
     license='LGPLv2',
@@ -46,6 +46,7 @@ setup(
     install_requires=[
         "docopt",
         "openfile",
+        "uctools",
         "toolwrapper",
     ],
     packages=find_packages('src'),
