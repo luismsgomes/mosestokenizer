@@ -42,7 +42,7 @@ class MosesTokenizer(ToolWrapper):
     ['Hello', 'World', '!']
     """
 
-    def __init__(self, lang="en", old_version=False, no_escape=False):
+    def __init__(self, lang="en", old_version=False, no_escape=False, extra=None):
         self.lang = lang
         program = path.join(
             path.dirname(__file__),
@@ -55,6 +55,8 @@ class MosesTokenizer(ToolWrapper):
             # -b = disable output buffering
             # -a = aggressive hyphen splitting
             argv.extend(["-b", "-a"])
+        if extra:
+            argv.extend(extra)
         super().__init__(argv)
 
     def __str__(self):
