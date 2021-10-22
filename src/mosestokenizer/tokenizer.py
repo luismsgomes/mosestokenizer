@@ -15,7 +15,7 @@ Options:
     --old           Use older version (1.0) of the tokenizer.
                     If this option is not given, then version 1.1
                     will be used.
-    --no-escape,    Do not escape output for HTML.
+    --no-escape     Do not escape output for HTML.
 
 2016, Luís Gomes <luismsgomes@gmail.com>
 """
@@ -86,7 +86,7 @@ def main():
             sys.exit(0)
     tokenize = MosesTokenizer(
         args["<lang>"],
-        old_version=args["--old"],        
+        old_version=args["--old"],
         no_escape=args["--no-escape"],
     )
     inputfile = openfile(args["<inputfile>"])
