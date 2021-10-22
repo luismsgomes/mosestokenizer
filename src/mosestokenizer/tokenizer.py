@@ -15,6 +15,7 @@ Options:
     --old           Use older version (1.0) of the tokenizer.
                     If this option is not given, then version 1.1
                     will be used.
+    --no-escape,    Do not escape output for HTML.
 
 2016, Luís Gomes <luismsgomes@gmail.com>
 """
@@ -41,13 +42,15 @@ class MosesTokenizer(ToolWrapper):
     ['Hello', 'World', '!']
     """
 
-    def __init__(self, lang="en", old_version=False):
+    def __init__(self, lang="en", old_version=False, no_escape=False):
         self.lang = lang
         program = path.join(
             path.dirname(__file__),
             "tokenizer-" + ("v1.0" if old_version else "v1.1") + ".perl"
         )
         argv = ["perl", program, "-q", "-l", self.lang]
+        if no_escape:
+            argv.append("-no-escape")
         if not old_version:
             # -b = disable output buffering
             # -a = aggressive hyphen splitting
@@ -81,7 +84,8 @@ def main():
             sys.exit(0)
     tokenize = MosesTokenizer(
         args["<lang>"],
-        old_version=args["--old"],
+        old_version=args["--old"],        
+        no_escape=args["--no-escape"],
     )
     inputfile = openfile(args["<inputfile>"])
     outputfile = openfile(args["<outputfile>"], "wt")
