@@ -74,7 +74,7 @@ string:
 License
 -------
 
-Copyright ® 2016-2017, Luís Gomes <luismsgomes@gmail.com>.
+Copyright ® 2016-2021, Luís Gomes <luismsgomes@gmail.com>.
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
